@@ -36,8 +36,8 @@ void setup()
   btn.setHoldTimeout(400);
 }
 
-static uint32_t tmr = millis();
-int tmr_interval = 200;
+uint32_t tmr = millis();
+int tmr_interval = 1000;
 
 bool welding = false;
 
@@ -48,6 +48,7 @@ void loop()
 
   if(millis() - tmr > tmr_interval)
   {
+    tmr = millis();
     float t1, t2, t3, t4 = -1;
 
     if(T1.readTemp()) t1 = T1.getTemp();

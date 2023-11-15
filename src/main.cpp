@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <GyverMAX6675.h>
-#include <GyverButton.h>
+#include <EncButton.h>
 
 #define T1_SCK 2
 #define T1_CS  3
@@ -25,7 +25,7 @@ GyverMAX6675<T2_SCK, T2_SO, T2_CS> T2;
 GyverMAX6675<T3_SCK, T3_SO, T3_CS> T3;
 GyverMAX6675<T4_SCK, T4_SO, T4_CS> T4;
 
-GButton btn(BTN);
+Button btn(BTN, INPUT, LOW);
 
 int b = 0;
 
@@ -33,7 +33,7 @@ void setup()
 {
   Serial.begin(115200);
   pinMode(BTN, INPUT_PULLUP);
-  btn.setTimeout(300);
+  btn.setHoldTimeout(200);
 }
 
 static uint32_t tmr = millis();
@@ -42,8 +42,8 @@ int tmr_interval = 200;
 void loop() 
 {
   btn.tick();
-  if(btn.isClick()) b = 1;
-  if(btn.isDouble()) b = 2;
+  if(btn.click()) b = 1;
+  if(btn.hold())  b = 2;
 
   if(millis() - tmr > tmr_interval)
   {
@@ -62,8 +62,9 @@ void loop()
     Serial.print(';');
     Serial.print(t3);
     Serial.print(';');
-    Serial.print(t4);
+    Serial.println(t4);
 
-    b = 0;
+    if(b > 0)
+      b = 0;
   }
 }

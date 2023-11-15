@@ -39,11 +39,12 @@ void setup()
 static uint32_t tmr = millis();
 int tmr_interval = 200;
 
+bool welding = false;
+
 void loop() 
 {
   btn.tick();
-  if(btn.click()) b = 1;
-  if(btn.hold())  b = 2;
+  if(btn.click()) welding = !welding;
 
   if(millis() - tmr > tmr_interval)
   {
@@ -54,7 +55,7 @@ void loop()
     if(T3.readTemp()) t3 = T3.getTemp();
     if(T4.readTemp()) t4 = T4.getTemp();
 
-    Serial.print(b);
+    Serial.print(welding);
     Serial.print(';');
     Serial.print(t1);
     Serial.print(';');
@@ -63,8 +64,5 @@ void loop()
     Serial.print(t3);
     Serial.print(';');
     Serial.println(t4);
-
-    if(b > 0)
-      b = 0;
   }
 }

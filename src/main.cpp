@@ -33,7 +33,7 @@ void setup()
 {
   Serial.begin(115200);
   pinMode(BTN, INPUT_PULLUP);
-  btn.setHoldTimeout(200);
+  btn.setHoldTimeout(400);
 }
 
 static uint32_t tmr = millis();

@@ -39,7 +39,7 @@ void setup()
 }
 
 uint32_t tmr = millis();
-int tmr_interval = 500;
+int tmr_interval = 250;
 
 bool welding = false;
 

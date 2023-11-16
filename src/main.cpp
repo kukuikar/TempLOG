@@ -14,18 +14,18 @@
 #define T2_CS  9
 #define T2_SO  8
 
-#define T1_SCK 13
-#define T1_CS  12
+#define T1_SCK A0
+#define T1_CS  13
 #define T1_SO  11
 
-#define BTN A0
+#define BTN 12
 
 GyverMAX6675<T1_SCK, T1_SO, T1_CS> T1;
 GyverMAX6675<T2_SCK, T2_SO, T2_CS> T2;
 GyverMAX6675<T3_SCK, T3_SO, T3_CS> T3;
 GyverMAX6675<T4_SCK, T4_SO, T4_CS> T4;
 
-Button btn(BTN, INPUT, LOW);
+//EncButton btn(A1, A2, BTN);
 
 int b = 0;
 
@@ -33,19 +33,24 @@ void setup()
 {
   Serial.begin(115200);
   pinMode(BTN, INPUT_PULLUP);
-  btn.setHoldTimeout(400);
+  //digitalWrite(BTN, HIGH);
+  //btn.setHoldTimeout(400);
+  //btn.setButtonLevel(LOW);
 }
 
 uint32_t tmr = millis();
-int tmr_interval = 1000;
+int tmr_interval = 500;
 
 bool welding = false;
 
 void loop() 
 {
-  btn.tick();
-  if(btn.click()) welding = !welding;
+  //btn.tick();
+  //if(btn.click())
+  //Serial.println("rrrrrrrr");
+  //if(btn.click()) welding = !welding;
 
+  welding = digitalRead(BTN);
   if(millis() - tmr > tmr_interval)
   {
     tmr = millis();

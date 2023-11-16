@@ -2,21 +2,21 @@
 #include <GyverMAX6675.h>
 #include <EncButton.h>
 
-#define T1_SCK 2
-#define T1_CS  3
-#define T1_SO  4
+#define T4_SCK 4
+#define T4_CS  3
+#define T4_SO  2
 
-#define T2_SCK 5
-#define T2_CS  6
-#define T2_SO  7
+#define T3_SCK 7
+#define T3_CS  6
+#define T3_SO  5
 
-#define T3_SCK 8
-#define T3_CS  9
-#define T3_SO  10
+#define T2_SCK 10
+#define T2_CS  9
+#define T2_SO  8
 
-#define T4_SCK 11
-#define T4_CS  12
-#define T4_SO  13
+#define T1_SCK 13
+#define T1_CS  12
+#define T1_SO  11
 
 #define BTN A0
 
